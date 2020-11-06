@@ -3,7 +3,7 @@ from exercises.python102 import remove_duplicates, letter2words_histogram, retur
 from exercises.word_play import separate_histograms
 
 
-class TestExercise1_2_2_1:
+class TestExercise1_2_4_1:
 
     @pytest.mark.parametrize("a,b",
                              [([2, 3, 1, 3, 5, 1], [2, 3, 5, 1]),

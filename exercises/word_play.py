@@ -26,7 +26,7 @@ def process_file(filename, skip_header):
     returns: map from each word to the number of times it appears.
     """
     hist = {}
-    fp = open(filename,encoding="utf8")
+    fp = open(filename, encoding="utf8")
 
     if skip_header:
         skip_gutenberg_header(fp)
@@ -94,7 +94,10 @@ def top_words(hist, number=10):
 
 
 def separate_histograms(word_hist1, word_hist2):
-    pass
+    for word in list(word_hist1.keys()):
+        if word in word_hist2:
+            word_hist1.pop(word)
+            word_hist2.pop(word)
     return None
 
 
@@ -114,14 +117,23 @@ def print_comparison(file1,file2):
 
 
 def save_comparison(file1,file2):
-    pass
-    return None
+    book1 = process_file('books/'+file1, skip_header=True)
+    book2 = process_file('books/'+file2, skip_header=True)
+    separate_histograms(book1,book2)
+    book1_top10 = top_words(book1,20)
+    book2_top10 = top_words(book2,20)
+
+    filename1 = file1[0:file1.find(".")]
+    filename2 = file2[0:file2.find(".")]
+    output_name = filename1+"_vs_"+filename2+".csv"
+    output_file = open('books/'+output_name, 'w')
+    output_file.write('#, '+filename1+', '+filename2+'\n')
+    for i in range(min(len(book1_top10),len(book2_top10))):
+        output_file.write("%d, %s, %s \n" % (i+1,book1_top10[i][0], book2_top10[i][0]))
+    output_file.close()
+    return None2
 
 
 if __name__ == '__main__':
     print_comparison('emma.txt','wotw.txt')
-
-
-
-
 

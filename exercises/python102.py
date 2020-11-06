@@ -1,6 +1,5 @@
-# Add suitable imports here (from or import)
-# Exercise 1.2.1.1 include foo from mymodule01
-# Exercise 1.2.1.2 import the package mymodule02
+from exercises.mymodule01 import foo
+import exercises.mypackage01.mymodule02
 
 
 def module_caller():
@@ -15,6 +14,13 @@ def remove_duplicates(l):
     """ For any element in the set that is a duplicate remove the duplicates.
     The result should contain all elements, but only once."""
 
+    unique_elements = list()
+
+    for x in l[:]:
+        if x not in unique_elements:
+            unique_elements.append(x)
+        else:
+            l.remove(x)
     return None
 
 
@@ -36,6 +42,9 @@ def update_attempt_453(l):
 
 
 def remove_duplicates_with_sets(l):
+    l_set=set(l)
+    l.clear()
+    l.extend(l_set)
     return None
 
 
@@ -51,12 +60,17 @@ def histogram(s):
 
 def letter2words_histogram(s):
     word_dict = dict()
-    pass
+    for w in s.lower().split():
+        for l in w:
+            if l in word_dict:
+                word_dict[l].add(w)
+            else:
+                word_dict[l] = {w}
     return word_dict
 
 
-def return_swapped_parameters(a, b):
-    pass
+def return_swapped_parameters(a,b):
+    return b, a
 
 
 if __name__ == "__main__":
