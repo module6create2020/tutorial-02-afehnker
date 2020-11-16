@@ -131,7 +131,7 @@ def save_comparison(file1,file2):
     for i in range(min(len(book1_top10),len(book2_top10))):
         output_file.write("%d, %s, %s \n" % (i+1,book1_top10[i][0], book2_top10[i][0]))
     output_file.close()
-    return None2
+    return None
 
 
 if __name__ == '__main__':

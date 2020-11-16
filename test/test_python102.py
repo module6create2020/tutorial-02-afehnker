@@ -12,7 +12,9 @@ class TestExercise1_2_4_1:
     def test_remove_duplicate(self, a, b):
         a_copy = a[:]
         remove_duplicates(a_copy)
-        if not a_copy == b:
+        for x in b:
+            a_copy.remove(x)
+        if not a_copy == []:
             pytest.fail("The method 'remove_duplicates' failed with argument {}.\n"
                         "The result should have been {}, it was {}".format(a, b, a_copy))
 
