@@ -60,7 +60,7 @@ def histogram(s):
 
 def letter2words_histogram(s):
     word_dict = dict()
-    for w in s.lower().split:
+    for w in s.lower().split():
         for l in w:
             if l in word_dict:
                 word_dict[l].add(w)
